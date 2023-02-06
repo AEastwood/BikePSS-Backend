@@ -1,4 +1,4 @@
-﻿using BikePSS.Core.WebSocket;
+﻿using BikePSS.Core;
 
 internal class Program
 {
@@ -7,14 +7,6 @@ internal class Program
         Console.Title = "BikePSS";
         Console.WriteLine("BikePSS Starting");
 
-        WebSocketsServer server = new();
-        server.Start();
-
-        while (true)
-        {
-            Thread.Sleep(1000);
-            Console.Clear();
-            Console.WriteLine("Waiting for WebSockets");
-        }
+        Loader.Init();
     }
 }
