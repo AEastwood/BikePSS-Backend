@@ -7,7 +7,7 @@ internal class Program
         Console.Title = "BikePSS";
         Console.WriteLine("BikePSS Starting");
 
-        WebSocketServer server = new();
+        WebSocketsServer server = new();
         server.Start();
 
         while (true)

@@ -1,43 +1,40 @@
-﻿using System.Net;
-using System.Net.Sockets;
-using System.Text;
+﻿using WebSocketSharp;
+using WebSocketSharp.Server;
 
 namespace BikePSS.Core.WebSocket
 {
-    internal class WebSocketServer
+    internal class HandleMessage : WebSocketBehavior
+    {
+        protected override void OnMessage(MessageEventArgs e)
+        {
+            Console.WriteLine(e.Data);
+            Send(e.Data);
+        }
+    }
+
+    internal class WebSocketsServer
     {
 
+        // IP Address
+        private readonly string ipAddress = "127.0.0.1";
+
+        // Port
+        private readonly int port = 6969;
+
         // Constructor
-        public WebSocketServer() { }
+        public WebSocketsServer() { }
 
         // Start WebSocket Server
         public void Start()
         {
-            try
-            {
-                TcpListener server = new(
-                    IPAddress.Parse("127.0.0.1"),
-                    6969
-                );
+            WebSocketServer webSocketServer = new(
+                string.Format("ws://{0}:{1}", ipAddress, port)
+            );
 
-                server.Start();
+            webSocketServer.AddWebSocketService<HandleMessage>("/api");
 
-                TcpClient client = server.AcceptTcpClient();
-                NetworkStream stream = client.GetStream();
-
-                while (true)
-                {
-                    while (!stream.DataAvailable)
-                    {
-                        byte[] bytes = new byte[client.Available];
-                        stream.Read(bytes, 0, bytes.Length);
-
-                        Console.WriteLine(Encoding.UTF8.GetString(bytes));
-                    }
-                }
-            }
-            catch { }
-
+            webSocketServer.Start();
+            Console.Read();
         }
 
     }
