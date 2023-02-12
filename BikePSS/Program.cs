@@ -4,9 +4,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.Title = "BikePSS";
-        Console.WriteLine("BikePSS Starting");
+        Loader loader = new();
+        loader.Init();
 
-        Loader.Init();
+        Console.WriteLine("BikePSS Started");
+        Console.Read();
     }
 }

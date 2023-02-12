@@ -69,7 +69,7 @@ namespace BikePSS.Properties {
         ///  },
         ///  {
         ///    &quot;ipAddress&quot;: &quot;127.0.0.1&quot;,
-        ///    &quot;port&quot;: &quot;6969&quot;,
+        ///    &quot;port&quot;: &quot;6970&quot;,
         ///    &quot;path&quot;: &quot;/update&quot;
         ///  }
         ///].
