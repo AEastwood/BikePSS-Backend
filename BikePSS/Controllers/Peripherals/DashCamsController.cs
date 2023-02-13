@@ -1,20 +1,19 @@
-﻿using BikePSS.Core;
+﻿using BikePSS.Models.Message;
 
 namespace BikePSS.Controllers.Peripherals
 {
-    internal class BluetoothController
+    internal class DashCamsController
     {
-        // Toggle Bluetooth
         public static void Toggle(bool enabled)
         {
             switch (enabled)
             {
                 case true:
-                    Console.WriteLine("Bluetooth Enabled");
+                    Console.WriteLine("Dash Cams Enabled");
                     break;
 
                 default:
-                    Console.WriteLine("Bluetooth Disabled");
+                    Console.WriteLine("Dash Cams Disabled");
                     break;
             }
         }

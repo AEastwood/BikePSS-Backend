@@ -8,7 +8,7 @@ namespace BikePSS.MessageHandlers.Settings
         // Handler
         public DashCamsHandler(Message message)
         {
-            BluetoothController.Toggle((bool)message.GetValue("enabled"));
+            DashCamsController.Toggle((bool)message.GetValue("enabled"));
         }
     }
 }

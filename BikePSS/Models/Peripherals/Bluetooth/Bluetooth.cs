@@ -3,7 +3,7 @@
     internal class Bluetooth
     {
         // Enabled State
-        public bool Enabled = false;
+        public bool Enabled { get; private set; } = false;
 
     }
 }

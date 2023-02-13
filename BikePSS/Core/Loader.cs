@@ -25,10 +25,7 @@ namespace BikePSS.Core
             try
             {
                 WebSockets = JsonConvert.DeserializeObject<List<WebSocketJSON>>(json);
-                WebSockets?
-                    .OrderBy(websocket => websocket.Port)
-                    .ToList()
-                    .ForEach(webSocket =>
+                WebSockets?.ForEach(webSocket =>
                     {
                         new Thread(() =>
                         {
@@ -60,7 +57,7 @@ namespace BikePSS.Core
         private static void LoadHandlers(string prefix)
         {
             var query = from types in Assembly.GetExecutingAssembly().GetTypes() where types.IsClass && types.Namespace == $"BikePSS.MessageHandlers.{prefix}" select types;
-            
+
             query.ToList().ForEach(t =>
             {
                 if (t.Name == "<>o__0") return;

@@ -3,7 +3,7 @@
     internal class GPSTracker
     {
         // Current Location
-        public Dictionary<string, double>? CurrentLocation { get; set; }
+        public Dictionary<string, double>? CurrentLocation { get; private set; }
 
         // Constructor
         public GPSTracker()
