@@ -15,8 +15,6 @@ namespace BikePSS.Core.WebSocket
 
             webSocketServer.AddWebSocketService<HandleMessage>(webSocket.Path);
             webSocketServer.Start();
-
-            Console.Read();
         }
 
     }

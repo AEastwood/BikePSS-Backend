@@ -70,7 +70,7 @@ namespace BikePSS.Core
                 string type = r.Replace(t.Name, "_").Replace("_Handler", "").ToLower();
                 string handler = t.Name;
 
-                MessageTypes.AddMessageType(type, $"BikePSS.MessageHandlers.Settings.{handler}");
+                MessageTypes.AddMessageType(type, $"BikePSS.MessageHandlers.{prefix}.{handler}");
             });
         }
     }
