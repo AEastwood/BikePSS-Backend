@@ -63,7 +63,7 @@ namespace BikePSS.Properties {
         /// <summary>
         ///   Looks up a localized string similar to [
         ///  {
-        ///    &quot;ipAddress&quot;: &quot;127.0.0.1&quot;,
+        ///    &quot;ipAddress&quot;: &quot;localhost&quot;,
         ///    &quot;port&quot;: &quot;6969&quot;,
         ///    &quot;path&quot;: &quot;/api&quot;
         ///  },
