@@ -4,16 +4,16 @@ namespace BikePSS.Models.Message
 {
     internal class Message
     {
-        public DateTime Created_at { get; private set; }
+        internal DateTime Created_at { get; private set; }
 
-        public JObject Data { get; set; }
+        internal JObject Data { get; set; }
 
-        public Guid Id { get; private set; }
+        internal Guid Id { get; private set; }
 
-        public string Type { get; set; }
+        internal string Type { get; set; }
 
         // Constructor
-        public Message(string type, JObject data)
+        internal Message(string type, JObject data)
         {
             Created_at = DateTime.Now;
             Data = data;
@@ -23,10 +23,10 @@ namespace BikePSS.Models.Message
         }
 
         // Get Value of Path
-        public dynamic GetValue(string path) => this.Data[path];
+        internal dynamic? GetValue(string path) => this.Data[path] ?? "";
 
         // Handle the command
-        public void Handle()
+        internal void Handle()
         {
             string typeClass = MessageTypes.GetHandler(this.Type);
             Type messageType = System.Type.GetType(typeClass);

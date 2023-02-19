@@ -1,38 +1,39 @@
-﻿namespace BikePSS.Controllers.Peripherals
+﻿namespace BikePSS.Controllers.Peripherals.Media
 {
     internal class MediaController
     {
 
         // Set Media Volume
-        public static void AdjustVolume(int level)
+        internal static void AdjustVolume(int level)
         {
 
         }
 
         // Pause Media
-        public static void Pause()
+        internal static void Pause()
         {
 
         }
 
         // Play Media
-        public static void Play()
+        internal static void Play()
         {
 
         }
 
         // Rewind Media
-        public static void Rewind()
+        internal static void Rewind()
         {
 
         }
 
         // Skip Media
-        public static void Skip()
+        internal static void Skip()
         {
 
         }
 
+        // Toggle Media Enabled
         internal static void Toggle(bool enabled)
         {
             switch (enabled)

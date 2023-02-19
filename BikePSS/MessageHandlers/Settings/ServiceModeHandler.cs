@@ -5,7 +5,7 @@ namespace BikePSS.MessageHandlers.Settings
     internal class ServiceModeHandler
     {
         // Handler
-        public ServiceModeHandler(Message message)
+        internal ServiceModeHandler(Message message)
         {
             Console.WriteLine(message.Type);
         }

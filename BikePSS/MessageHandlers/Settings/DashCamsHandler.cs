@@ -1,4 +1,4 @@
-﻿using BikePSS.Controllers.Peripherals;
+﻿using BikePSS.Controllers.Peripherals.DashCams;
 using BikePSS.Models.Message;
 
 namespace BikePSS.MessageHandlers.Settings
@@ -6,7 +6,7 @@ namespace BikePSS.MessageHandlers.Settings
     internal class DashCamsHandler
     {
         // Handler
-        public DashCamsHandler(Message message)
+        internal DashCamsHandler(Message message)
         {
             DashCamsController.Toggle((bool)message.GetValue("enabled"));
         }

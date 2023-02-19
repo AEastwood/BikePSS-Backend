@@ -1,11 +1,11 @@
 ﻿using BikePSS.Core;
 
-namespace BikePSS.Controllers.Peripherals
+namespace BikePSS.Controllers.Peripherals.Bluetooth
 {
     internal class BluetoothController
     {
         // Toggle Bluetooth
-        public static void Toggle(bool enabled)
+        internal static void Toggle(bool enabled)
         {
             switch (enabled)
             {

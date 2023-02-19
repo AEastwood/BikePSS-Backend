@@ -74,9 +74,9 @@ namespace BikePSS.Properties {
         ///  }
         ///].
         /// </summary>
-        internal static string websockets {
+        internal static string internal_websockets {
             get {
-                return ResourceManager.GetString("websockets", resourceCulture);
+                return ResourceManager.GetString("internal.websockets", resourceCulture);
             }
         }
     }

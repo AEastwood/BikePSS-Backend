@@ -1,12 +1,12 @@
 ﻿using BikePSS.Core;
 
-namespace BikePSS.Controllers.Peripherals
+namespace BikePSS.Controllers.Peripherals.Navigation
 {
     internal class NavigationController
     {
 
         // Set Route
-        public void SetRoute(float lat, float lng)
+        internal void SetRoute(float lat, float lng)
         {
         }
 

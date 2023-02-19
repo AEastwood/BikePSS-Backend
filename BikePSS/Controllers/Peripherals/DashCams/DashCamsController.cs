@@ -1,10 +1,10 @@
 ﻿using BikePSS.Models.Message;
 
-namespace BikePSS.Controllers.Peripherals
+namespace BikePSS.Controllers.Peripherals.DashCams
 {
     internal class DashCamsController
     {
-        public static void Toggle(bool enabled)
+        internal static void Toggle(bool enabled)
         {
             switch (enabled)
             {

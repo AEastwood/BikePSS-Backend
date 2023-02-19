@@ -3,22 +3,33 @@
     internal class GPSTracker
     {
         // Current Location
-        public Dictionary<string, double>? CurrentLocation { get; private set; }
+        internal Dictionary<string, double>? CurrentPosition { get; set; }
 
         // Constructor
-        public GPSTracker()
+        internal GPSTracker()
         {
-            this.SetCurrentLocation(12.3456, 23.4567);
+            this.SetCurrentPosition(
+                this.GetCurrentPosition()
+            );
+
+            Console.WriteLine("GPS Tracker:");
+            Console.WriteLine("\tUnit: Loaded");
+        }
+
+        // Get Current Location6
+        internal Dictionary<string, double> GetCurrentPosition()
+        {
+            return new Dictionary<string, double>()
+            {
+                { "lat", 12.3456 },
+                { "lng", 13.4567 }
+            };
         }
 
         // Get Current Location
-        public void SetCurrentLocation(double lat, double lng)
+        private void SetCurrentPosition(Dictionary<string, double> position)
         {
-            this.CurrentLocation = new Dictionary<string, double>()
-            {
-                { "lat", lat },
-                { "lng", lng }
-            };
+            this.CurrentPosition = position;
         }
     }
 }

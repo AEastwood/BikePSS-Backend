@@ -1,24 +1,64 @@
 ﻿using BikePSS.Models.Peripherals.Bluetooth;
 using BikePSS.Models.Peripherals.GPS;
-using System.Runtime.InteropServices;
 
 namespace BikePSS.Core
 {
     internal class Backend
     {
-        public Bluetooth Bluetooth { get; set; }
+        // Bluetooth Module
+        internal Bluetooth Bluetooth { get; set; }
 
-        public GPSTracker GPS { get; set; }
+        // Environment Module
+        internal Environment.Environment Environment { get; set; }
 
-        // Constructor
-        public Backend()
+        // GPS Module
+        internal GPSTracker GPS { get; set; }
+
+        // Security Module
+        internal Security.Security Security { get; set; }
+
+        // Initialise the backend
+        internal void Init()
         {
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                Console.WriteLine("Operating System is not Linux, unideal conditions detected. Unwanted behaviour may occur.");
+            Console.Title = "BikePSS";
 
+            this.SetEnvironment();
+            this.SetSecurity();
+            this.SetBluetooth();
+            this.SetGPS();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nBackend Initialised");
+            Console.ResetColor();
+        }
+
+        // Set Bluetooth Module
+        private void SetBluetooth()
+        {
             Bluetooth = new Bluetooth();
+
+            if (Loader.Backend.Environment.IsLinux)
+                Bluetooth.Connect();
+        }
+
+        // Set Environment
+        private void SetEnvironment()
+        {
+            Environment = new Environment.Environment();
+        }
+
+        // Set GPS
+        private void SetGPS()
+        {
             GPS = new GPSTracker();
         }
+
+        // Set Security
+        private void SetSecurity()
+        {
+            Security = new Security.Security();
+        }
+
     }
 
 }

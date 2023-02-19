@@ -6,7 +6,7 @@ namespace BikePSS.Core.CLI
     {
 
         // Excecute /bin/bash command
-        public static bool Execute(string arguments, string command = "/bin/bash")
+        internal static bool Execute(string arguments, string command = "/bin/bash")
         {
             ProcessStartInfo startInfo = new()
             {

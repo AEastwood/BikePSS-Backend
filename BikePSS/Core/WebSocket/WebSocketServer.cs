@@ -7,7 +7,7 @@ namespace BikePSS.Core.WebSocket
     {
 
         // Start WebSocket Server
-        public static void Start(WebSocketJSON webSocket)
+        internal static void Start(WebSocketJSON webSocket)
         {
             string connectionString = string.Format("ws://{0}:{1}", webSocket.IpAddress, webSocket.Port);
 
