@@ -1,4 +1,4 @@
-﻿using BikePSS.MessageHandlers;
+﻿using BikePSS.Handlers;
 using WebSocketSharp.Server;
 
 namespace BikePSS.Core.WebSocket

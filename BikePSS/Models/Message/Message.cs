@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using BikePSS.Controllers.Backend;
+using BikePSS.Core;
+using Newtonsoft.Json.Linq;
 
 namespace BikePSS.Models.Message
 {
@@ -13,7 +15,7 @@ namespace BikePSS.Models.Message
         internal string Type { get; set; }
 
         // Constructor
-        internal Message(string type, JObject data)
+        public Message(string type, JObject data)
         {
             Created_at = DateTime.Now;
             Data = data;
@@ -29,8 +31,13 @@ namespace BikePSS.Models.Message
         internal void Handle()
         {
             string typeClass = MessageTypes.GetHandler(this.Type);
-            Type messageType = System.Type.GetType(typeClass);
-            Activator.CreateInstance(messageType, this);
+            
+            Activator.CreateInstance(
+                System.Type.GetType(typeClass), 
+                this
+            );
+
+            BackendController.SaveState(Loader.Backend);
         }
     }
 }

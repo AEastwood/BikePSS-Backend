@@ -2,5 +2,9 @@
 {
     internal class FuelPump
     {
+
+        // Constructor
+        public FuelPump() { }
+
     }
 }

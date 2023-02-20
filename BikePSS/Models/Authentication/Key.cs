@@ -1,17 +1,28 @@
 ﻿namespace BikePSS.Models.Authentication
 {
+    enum KeyType
+    {
+        NONE = 0,
+        DEVELOPMENT = 1,
+        STANDARD = 2
+    }
+
     internal class Key
     {
         // Key Guid
-        internal Guid KeyId { get; private set; }
+        public Guid KeyId { get; private set; }
 
         // Name
-        internal string Name { get; private set; }
+        public string Name { get; private set; }
+
+        // Key Type
+        public KeyType Type { get; private set; } = KeyType.NONE;
 
         // Constructor
-        internal Key(string name)
+        public Key(string name)
         {
             this.Name = name;
+            this.KeyId = Guid.NewGuid();
         }
     }
 }

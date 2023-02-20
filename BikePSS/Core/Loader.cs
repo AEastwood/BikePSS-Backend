@@ -1,14 +1,17 @@
-﻿using BikePSS.Core.WebSocket;
-using BikePSS.Models.Message;
+﻿using BikePSS.Controllers.Backend;
+using BikePSS.Controllers.Handlers;
+using BikePSS.Core.WebSocket;
 using Newtonsoft.Json;
-using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace BikePSS.Core
 {
     internal class Loader
     {
-        internal static Backend Backend = new Backend();
+        // Backend
+        internal static Backend Backend;
+
+        // State Resumed From File
+        internal static bool StateResumed = false;
 
         // List of WebSockets
         private static List<WebSocketJSON>? WebSockets = new();
@@ -16,10 +19,20 @@ namespace BikePSS.Core
         // Initialise the loader
         internal static void Init()
         {
-            Backend.Init();
+            if (!File.Exists($"{BackendController.CurrentPath}\\backend"))
+                Backend = new Backend();
+            else
+            {
+                Backend = BackendController.LoadState();
+                StateResumed = true;
+            }
+
+            BackendController.Init();
 
             try
             {
+                File.WriteAllText($"{BackendController.CurrentPath}\\backend", JsonConvert.SerializeObject(Backend));
+
                 string? json = Properties.Resources.ResourceManager.GetString("internal.websockets");
 
                 if (json == null) return;
@@ -34,41 +47,16 @@ namespace BikePSS.Core
                     }).Start();
                 });
 
-                LoadHandlers();
+                MessageHandlersController.Load();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to init backend", ex.Message);
+                Console.WriteLine("Unable to init backend {0}", ex.Message);
                 Console.Read();
             }
         }
 
-        // Load Handlers
-        private static void LoadHandlers()
-        {
-            foreach (var handler in MessageHandlers())
-            {
-                var query = from types in Assembly.GetExecutingAssembly().GetTypes() where types.IsClass && types.Namespace == $"BikePSS.MessageHandlers.{handler}" select types;
 
-                query.ToList().ForEach(t =>
-                {
-                    if (t.Name == "<>o__0") return;
 
-                    MessageTypes.AddMessageType(
-                        MessageHandlersRegex().Replace(t.Name, "_").Replace("_Handler", "").ToLower(),
-                        $"BikePSS.MessageHandlers.{handler}.{t.Name}"
-                    );
-                });
-            }
-        }
-
-        // Available Message Handlers
-        private static string[] MessageHandlers() => new string[] { "Settings" };
-
-        // Message Handlers Regex
-        private static Regex MessageHandlersRegex()
-        {
-            return new Regex("(?<=[A-Z])(?=[A-Z][a-z])|(?<=[^A-Z])(?=[A-Z]) |(?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
-        }
     }
 }

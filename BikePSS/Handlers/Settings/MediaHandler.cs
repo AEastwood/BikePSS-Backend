@@ -1,12 +1,12 @@
 ﻿using BikePSS.Controllers.Peripherals.Media;
 using BikePSS.Models.Message;
 
-namespace BikePSS.MessageHandlers.Settings
+namespace BikePSS.Handlers.Settings
 {
     internal class MediaHandler
     {
         //Handler
-        internal MediaHandler(Message message)
+        public MediaHandler(Message message)
         {
             MediaController.Toggle((bool)message.GetValue("enabled"));
         }

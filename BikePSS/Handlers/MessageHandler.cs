@@ -1,9 +1,10 @@
-﻿using BikePSS.Models.Message;
+﻿using BikePSS.Core;
+using BikePSS.Models.Message;
 using Newtonsoft.Json;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
-namespace BikePSS.MessageHandlers
+namespace BikePSS.Handlers
 {
     internal class HandleMessage : WebSocketBehavior
     {
@@ -15,9 +16,15 @@ namespace BikePSS.MessageHandlers
                 Message message = JsonConvert.DeserializeObject<Message>(e.Data);
 
                 if (MessageTypes.Allowed(message.Type))
+                {
                     message.Handle();
+                    Send(JsonConvert.SerializeObject(Loader.Backend));
+                }
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
         }
     }
 

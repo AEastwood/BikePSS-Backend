@@ -2,5 +2,8 @@
 {
     internal class Solenoid
     {
+
+        // Constructor
+        public Solenoid() { }
     }
 }

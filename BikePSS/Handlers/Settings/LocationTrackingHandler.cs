@@ -1,12 +1,12 @@
 ﻿using BikePSS.Controllers.Peripherals.Bluetooth;
 using BikePSS.Models.Message;
 
-namespace BikePSS.MessageHandlers.Settings
+namespace BikePSS.Handlers.Settings
 {
-    internal class SpeedLoggingHandler
+    internal class LocationTrackingHandler
     {
         // Handler
-        internal SpeedLoggingHandler(Message message)
+        public LocationTrackingHandler(Message message)
         {
             BluetoothController.Toggle((bool)message.GetValue("enabled"));
         }

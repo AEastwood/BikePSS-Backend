@@ -1,12 +1,12 @@
 ﻿using BikePSS.Controllers.Peripherals.Bluetooth;
 using BikePSS.Models.Message;
 
-namespace BikePSS.MessageHandlers.Settings
+namespace BikePSS.Handlers.Settings
 {
-    internal class DeveloperModeHandler
+    internal class BluetoothHandler
     {
         // Handler
-        internal DeveloperModeHandler(Message message)
+        public BluetoothHandler(Message message)
         {
             BluetoothController.Toggle((bool)message.GetValue("enabled"));
         }
